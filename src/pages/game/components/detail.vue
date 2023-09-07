@@ -327,14 +327,14 @@ async function createNewGame(){
       class="backdrop-blur-sm h-full w-full absolute top-0 left-0 flex-center flex-col"
     >
       <span class="text-2xl text-violet-500">FINISHED</span>
-      <q-btn
+      <!-- <q-btn
         outline
         rounded
         color="green"
         no-caps
         class="mt-5"
         @click="createNewGame"
-      >Create new game</q-btn>
+      >Create new game</q-btn> -->
     </div>
 
     <template v-else>

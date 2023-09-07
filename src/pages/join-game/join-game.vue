@@ -61,18 +61,46 @@ async function logout() {
       >
         Join By ID
       </q-btn>
+    </div>
 
-      <div class="flex items-center gap-1">
-        <a href="#" class="btn bg-gray-900 hover:bg-gray-950">
+    <div class="hidden  lg:!flex flex-col items-center gap-1 absolute bottom-4 ">
+      <a
+        href="https://github.com/origamicore/core"
+        class="fixed px-5 py-2 rounded-full bg-[var(--main-purple)] text-gray-50 hover:text-gray-50"
+      >
+        <i class="fab fa-github mr-1"></i>
+        Don't forget to star
+        <i class="fas fa-star text-yellow-400 ml-1"></i>
+      </a>
+
+      <div class="flex items-center gap-2 mt-12">
+        <a
+          href="https://github.com/moh3ndehghani/evac-frontend"
+          target="_blank"
+          class="btn btn-sm bg-gray-900 hover:bg-gray-950"
+        >
           <q-icon name="fab fa-github"></q-icon>
           Front-End
         </a>
-        <a href="#" class="btn bg-gray-900 hover:bg-gray-950">
+        <a
+          href="https://github.com/OrigamiShowcase/evac-server"
+          target="_blank"
+          class="btn btn-sm bg-gray-900 hover:bg-gray-950"
+        >
           <q-icon name="fab fa-github"></q-icon>
           Back-End
         </a>
+        <a
+          href="https://github.com/OrigamiShowcase/evac-server"
+          target="_blank"
+          class="btn btn-sm bg-gray-900 hover:bg-gray-950"
+        >
+          <q-icon name="fab fa-github"></q-icon>
+          OrigamiCore
+        </a>
       </div>
     </div>
+
     <q-btn
       size="sm"
       round
