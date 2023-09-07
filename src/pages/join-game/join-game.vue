@@ -1,0 +1,90 @@
+<script setup lang="ts">
+import ApiService from "src/services/ApiService";
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import { useQuasar } from "quasar";
+import JoinDialog from "src/pages/join-game/components/join-dialog.vue";
+
+////////
+
+const $q = useQuasar();
+const router = useRouter();
+
+const state = reactive({
+  showJoinDialog: false,
+});
+
+////////
+
+function closeDialog() {
+  state.showJoinDialog = false;
+}
+
+async function createGame() {
+  try {
+    const response = await ApiService.createGame();
+    if (response) {
+      router.push({ name: "game" });
+    }
+  } catch (error) {
+    $q.notify({
+      color: "negative",
+      message: "There is a problem in creating a game!",
+    });
+  }
+}
+
+async function logout() {
+  window.localStorage.removeItem("token");
+  router.push({ name: "login" });
+}
+</script>
+
+<template>
+  <div class="flex-center flex-col gap-10 h-screen relative">
+    <span class="text-gray-50 font-monument text-4xl">EVAC</span>
+    <div class="flex flex-col items-center gap-5">
+      <q-btn
+        rounded
+        text-color="white"
+        class="bg-sky-600 hover:bg-sky-700"
+        icon="fas fa-plus"
+        @click="createGame"
+      >
+        Create New Game
+      </q-btn>
+      <q-btn
+        rounded
+        text-color="white"
+        class="bg-[var(--main-purple)] hover:bg-violet-900"
+        @click="state.showJoinDialog = true"
+      >
+        Join By ID
+      </q-btn>
+
+      <div class="flex items-center gap-1">
+        <a href="#" class="btn bg-gray-900 hover:bg-gray-950">
+          <q-icon name="fab fa-github"></q-icon>
+          Front-End
+        </a>
+        <a href="#" class="btn bg-gray-900 hover:bg-gray-950">
+          <q-icon name="fab fa-github"></q-icon>
+          Back-End
+        </a>
+      </div>
+    </div>
+    <q-btn
+      size="sm"
+      round
+      icon="fa-solid fa-arrow-right-from-bracket"
+      color="red"
+      class="absolute right-2 top-2"
+      @click="logout"
+    ></q-btn>
+  </div>
+  <JoinDialog
+    v-if="state.showJoinDialog"
+    :show="state.showJoinDialog"
+    @closeDialog="closeDialog"
+  />
+</template>

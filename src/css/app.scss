@@ -1,0 +1,145 @@
+$popins-font: 'Poppins' , sans-serif;
+$monument-font: 'Monument' , sans-serif;
+
+:root{
+  --main-purple: #705aff;
+  --main-dark:   #242424;
+  --main-gray:   #303030;
+  --main-gray2:   #393939;
+  --gray:        #B5B3B5;
+}
+
+*{
+  font-family: $monument-font;
+}
+
+body{
+  @apply overflow-x-hidden
+}
+
+.q-drawer--left.q-drawer--bordered{
+  border-right: 0px solid rgba(0, 0, 0, 0.12);
+}
+
+//animation
+@layer base{
+  .animated__fast{
+    --animate-duration: 0.4s;
+  }
+}
+
+@layer base{
+  a{
+    @apply transition-300 hover:text-[var(--main-purple)]
+  }
+  .flex-center{
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between{
+    @apply flex items-center justify-between;
+  }
+
+  .transition-300{
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .disable-selection{
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+
+  //fonts
+  .font-monument{
+    font-family:  $monument-font;
+  }
+  .font-popins{
+    font-family:  $popins-font;
+  }
+
+  .btn-shadow{
+    box-shadow: 0px 0px 10px 0px var(--main-purple);
+  }
+
+  //btns
+  .btn-sm{
+    @apply text-sm py-3 px-4 #{!important};
+  }
+  .btn-md{
+    @apply text-base px-6 py-3 #{!important};
+  }
+  .btn{
+    @apply btn-sm md:btn-md transition-300  flex items-center gap-2 rounded-full hover:btn-shadow ;
+    @apply text-gray-50 #{!important} ;
+  }
+
+
+
+  .title{
+    @apply text-gray-50 font-monument text-xl lg:text-3xl tracking-wider		;
+  }
+
+  .box-title{
+    @apply font-monument text-center lg:text-start;
+  }
+
+  .main-container{
+    @apply max-w-[1325px] mx-auto p-5;
+  }
+}
+
+//game
+@layer components{
+  .game{
+    @apply p-2 lg:p-10 max-w-[1400px] mx-auto grid grid-cols-8 gap-2 min-h-screen;
+    .section-info{
+      @apply backdrop-blur-sm rounded-[10px] lg:rounded-[30px] p-1 lg:p-3;
+      border: 1px solid var(--main-purple);
+      box-shadow: 0 0 .1rem #fff,
+                0 0 .1rem #fff,
+                0 0 1rem var(--main-purple),
+                0 0 0.8rem var(--main-purple),
+                0 0 1rem var(--main-purple),
+    }
+  }
+}
+
+//detail
+@layer components{
+  .detail{
+    @apply h-full flex flex-col gap-5 ;
+
+    .spaceship{
+      @apply w-1/5 opacity-20
+    }
+    .active-spaceship{
+      @apply opacity-100 #{!important};
+    }
+    .dice-item{
+      @apply w-1/5 mx-1 cursor-pointer;
+    }
+    .dice-item-active{
+      @apply outline outline-offset-2 outline-4 outline-green-500 rounded-2xl #{!important}
+    }
+  }
+}
+
+//board
+@layer components{
+  .board{
+    @apply w-full h-full grid grid-cols-11 gap-5 ;
+    .place-item{
+      @apply p-1 m-[1px] lg:m-1 w-full h-[5.8%] flex-center bg-violet-950 border border-violet-500 rounded-sm lg:rounded-md;
+      .spaceship{
+        @apply  h-full
+      }
+    }
+  }
+}
+
+
+
