@@ -111,10 +111,13 @@ body{
 //detail
 @layer components{
   .detail{
-    @apply h-full flex flex-col gap-5 ;
+    @apply h-full flex flex-col gap-2 lg:gap-5 ;
 
     .spaceship{
-      @apply w-1/5 opacity-20
+      @apply w-1/5 opacity-20 relative;
+      img{
+        @apply h-full w-full;
+      }
     }
     .active-spaceship{
       @apply opacity-100 #{!important};
@@ -135,7 +138,7 @@ body{
     .place-item{
       @apply p-1 m-[1px] lg:m-1 w-full h-[5.8%] flex-center bg-violet-950 border border-violet-500 rounded-sm lg:rounded-md;
       .spaceship{
-        @apply  h-full
+        @apply  h-full;
       }
     }
   }

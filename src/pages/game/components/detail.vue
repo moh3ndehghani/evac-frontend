@@ -347,11 +347,10 @@ async function createNewGame(){
           @click="state.showInviteDialog = true"
           :disable="store.players.length == 4"
         >
-          Invite Friends
+          Invite
         </q-btn>
         <q-btn
           size="xs"
-          round
           icon="fa-solid fa-arrow-right-from-bracket"
           color="red"
           @click="logout"
@@ -372,10 +371,10 @@ async function createNewGame(){
 
       <hr />
 
-      <div v-if="store.game?.players.length > 1" class="flex flex-col gap-10">
-        <div class="lg:mt-5 flex-center gap-1 lg:gap-4 min-h-[50px]">
+      <div v-if="store.game?.players.length > 1" class="flex flex-col gap-3 lg:gap-10">
+        <div class="mt-1 lg:mt-5 flex-center gap-1 lg:gap-4">
           <div
-            class="relative spaceship"
+            class="spaceship"
             :class="{ 'active-spaceship': item.userid === activePlayer.userid }"
             v-for="(item, index) in players"
             :key="index"
@@ -392,7 +391,7 @@ async function createNewGame(){
             activePlayer.userid == store.profile.userid &&
             store.game.state != GameState.Waiting
           "
-          class="flex-center text-center text-gray-50"
+          class="flex-center text-center text-gray-50 text-xs lg:text-base"
           >Your Turn</span
         >
 
