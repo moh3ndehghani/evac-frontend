@@ -49,8 +49,6 @@ export default route(function (/* { store, ssrContext } */) {
 
 
     const token = window.localStorage.getItem("token")
-    console.log("token ====" , token);
-
     if(token && to.name === "login"){
       return next({name:"join-game"})
     }

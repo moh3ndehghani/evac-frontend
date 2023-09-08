@@ -111,7 +111,6 @@ const ignoreCondition = computed(() => {
       return true;
     }
 
-    //suppose that the user has 3,4,3,4 dices. when user selects one of that, he gets to the end of the column. the column is not locked yet but user still can still select. we must prevent it.
     const sameMeepleInColumn = store.activePlayer.meeples.find(
       (meeple: any) => meeple.index == totalDices
     );

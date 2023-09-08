@@ -4,6 +4,7 @@ import ApiService from "src/services/ApiService";
 import { appStore } from "src/stores/app";
 import { onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
+import Disconnected from "src/components/disconnect.vue"
 
 ////////
 
@@ -30,7 +31,6 @@ onMounted(async () => {
       checkOrientation();
     });
   }
-
 
 })
 
@@ -64,12 +64,14 @@ function detectOS(){
 
 <template>
   <q-layout view="lHh lpr lFf" class="bg-[var(--main-dark)]">
+    <Disconnected />
     <q-page-container v-if="state.isMobile && !state.isLandScape" class="flex-center bg-black w-screen h-screen" >
       <img src="~/assets/images/global/rotate.gif" alt="rotate-phone">
     </q-page-container>
     <q-page-container v-if="(state.isMobile && state.isLandScape) || !state.isMobile" class="bg" >
       <router-view  />
     </q-page-container>
+
   </q-layout>
 </template>
 

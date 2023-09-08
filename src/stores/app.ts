@@ -5,7 +5,8 @@ export const appStore = defineStore('game', {
     game: null,
     token:"",
     profile:{},
-    changingTurn:false
+    changingTurn:false,
+    disconnected:false
   }),
 
   getters:{

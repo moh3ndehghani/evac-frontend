@@ -20,12 +20,23 @@ const router = useRouter()
 
 onMounted(() => {
   WebSocketClient.client.addEventListener("open", async () => {
+    store.disconnected = false
     await WebSocketClient.connectToServer();
   });
   WebSocketClient.client.addEventListener("message", async (event) => {
-    // await WebSocketClient.connectToServer()
     var data = JSON.parse(event.data);
     WebSocketClient.messages(data);
+  });
+  WebSocketClient.client.addEventListener("close", (event) => {
+    store.disconnected = true
+    if(store.disconnected == true){
+      setInterval(async () => {
+        // WebSocketClient.client.addEventListener("open", async () => {
+        //   store.disconnected = false
+        //   await WebSocketClient.connectToServer();
+        // });
+      } , 2000)
+    }
   });
 });
 
