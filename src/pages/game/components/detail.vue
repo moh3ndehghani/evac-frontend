@@ -317,6 +317,8 @@ async function createNewGame(){
     }
   }
 }
+
+
 </script>
 
 <template>
