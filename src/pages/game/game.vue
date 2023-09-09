@@ -21,6 +21,8 @@ const router = useRouter()
 onMounted(() => {
   WebSocketClient.client.addEventListener("open", async () => {
     store.disconnected = false
+    console.log("online ===");
+
     await WebSocketClient.connectToServer();
   });
   WebSocketClient.client.addEventListener("message", async (event) => {
@@ -29,12 +31,15 @@ onMounted(() => {
   });
   WebSocketClient.client.addEventListener("close", (event) => {
     store.disconnected = true
+    console.log("offline ===");
     if(store.disconnected == true){
       setInterval(async () => {
-        // WebSocketClient.client.addEventListener("open", async () => {
-        //   store.disconnected = false
-        //   await WebSocketClient.connectToServer();
-        // });
+        console.log("offline intrerval");
+        WebSocketClient.client.addEventListener("open", async () => {
+          console.log("offline intrerval ====> online");
+          store.disconnected = false
+          await WebSocketClient.connectToServer();
+        });
       } , 2000)
     }
   });
