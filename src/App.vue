@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 
-console.log("version 1.0.3");
+console.log("version 1.0.4");
 
 
 </script>

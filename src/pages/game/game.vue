@@ -29,9 +29,9 @@ onMounted(() => {
     var data = JSON.parse(event.data);
     WebSocketClient.messages(data);
   });
-  WebSocketClient.client.addEventListener("close", (event) => {
+  WebSocketClient.client.addEventListener("onClose", (event) => {
     store.disconnected = true
-    console.log("offline ===");
+    console.log("offline ===" , event);
     if(store.disconnected == true){
       setInterval(async () => {
         console.log("offline intrerval");
