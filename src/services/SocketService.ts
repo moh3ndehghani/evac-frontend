@@ -9,6 +9,37 @@ export default class WebSocketClient{
   static temp:any = {}
   static client:WebSocket = new WebSocket(this.baseUrl , 'echo-protocol')
   static token:string | null = window.localStorage.getItem("token")
+  static closeInterval:any = null
+
+  static async init(){
+    const store = appStore()
+
+    this.client.onopen = async () => {
+      store.disconnected = false
+      console.log("online ===");
+      try {
+        await this.connectToServer();
+        clearInterval(this.closeInterval)
+      } catch (error) {}
+    }
+
+    this.client.onmessage = async (event) => {
+      var data = JSON.parse(event.data);
+      this.messages(data);
+    }
+
+    this.client.onclose = async () => {
+      store.disconnected = true
+      console.log("offline =====");
+      if(store.disconnected == true){
+        this.closeInterval = setInterval(async () => {
+          console.log("offline intrerval");
+          this.client = new WebSocket(this.baseUrl , 'echo-protocol')
+          await this.init()
+        } , 2000)
+      }
+    }
+  }
 
   static async callApiSocket(domain:string,service:any,param:any,callBack:any=null){
     this.id++;

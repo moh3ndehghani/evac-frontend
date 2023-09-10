@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useQuasar } from "quasar";
+import webSocket from "src/boot/web-socket";
 import { GameState } from "src/enums/GameState";
 import Board from "src/pages/game/components/board.vue";
 import Detail from "src/pages/game/components/detail.vue";
@@ -11,38 +12,12 @@ import { useRouter } from "vue-router";
 
 ////////
 
-const $q = useQuasar()
 const store = appStore();
-
-const router = useRouter()
 
 ////////
 
-onMounted(() => {
-  WebSocketClient.client.addEventListener("open", async () => {
-    store.disconnected = false
-    console.log("online ===");
-
-    await WebSocketClient.connectToServer();
-  });
-  WebSocketClient.client.addEventListener("message", async (event) => {
-    var data = JSON.parse(event.data);
-    WebSocketClient.messages(data);
-  });
-  WebSocketClient.client.addEventListener("onClose", (event) => {
-    store.disconnected = true
-    console.log("offline ===" , event);
-    if(store.disconnected == true){
-      setInterval(async () => {
-        console.log("offline intrerval");
-        WebSocketClient.client.addEventListener("open", async () => {
-          console.log("offline intrerval ====> online");
-          store.disconnected = false
-          await WebSocketClient.connectToServer();
-        });
-      } , 2000)
-    }
-  });
+onMounted(async () => {
+  await WebSocketClient.init()
 });
 
 </script>
