@@ -317,6 +317,11 @@ async function createNewGame(){
   }
 }
 
+async function logout() {
+  window.localStorage.removeItem("token");
+  router.push({ name: "login" });
+}
+
 
 </script>
 

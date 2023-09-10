@@ -38,6 +38,7 @@ async function logout() {
   window.localStorage.removeItem("token");
   router.push({ name: "login" });
 }
+
 </script>
 
 <template>
@@ -49,7 +50,7 @@ async function logout() {
         text-color="white"
         class="bg-sky-600 hover:bg-sky-700"
         icon="fas fa-plus"
-        @click="createGame"
+        @click="createGame()"
       >
         Create New Game
       </q-btn>
@@ -109,10 +110,12 @@ async function logout() {
       class="absolute right-2 top-2"
       @click="logout"
     ></q-btn>
+
+    <JoinDialog
+      v-if="state.showJoinDialog"
+      :show="state.showJoinDialog"
+      @closeDialog="closeDialog"
+    />
   </div>
-  <JoinDialog
-    v-if="state.showJoinDialog"
-    :show="state.showJoinDialog"
-    @closeDialog="closeDialog"
-  />
+
 </template>

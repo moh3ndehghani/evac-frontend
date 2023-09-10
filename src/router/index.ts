@@ -67,12 +67,12 @@ export default route(function (/* { store, ssrContext } */) {
       if(game){
         store.game = game
         if(to.name !== "game"){
-          next({name:"game"})
+          return next({name:"game"})
         }
       }
       else{
         if(to.name !== "join-game"){
-          next({name:"join-game"})
+          return next({name:"join-game"})
         }
       }
     }
