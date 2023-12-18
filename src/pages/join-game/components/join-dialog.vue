@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as Yup from "yup";
-import { ErrorMessage, Field, useField, useForm } from "vee-validate";
+import {useField, useForm } from "vee-validate";
 import { reactive } from "vue";
 import ApiService from "src/services/ApiService";
 import { useQuasar } from "quasar";
